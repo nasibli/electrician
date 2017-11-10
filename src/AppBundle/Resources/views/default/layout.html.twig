@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Туризм</title>
+
+  <link rel="stylesheet" href="/bundles/app/vendor/bootstrap.css"/>
+  <link rel="stylesheet" href="/bundles/app/assets/css/main.css"/>
+  <script src="/bundles/app/vendor/jquery-1.12.0.min.js"></script>
+  <script src="/bundles/app/vendor/jquery-migrate-1.2.1.min.js"></script>
+  <script src="/bundles/app/vendor/bootstrap.min.js"></script>
+  <script src="/bundles/app/vendor/angular.js"></script>
+  <script src="/bundles/app/vendor/angular-route.js"></script>
+  {% javascripts
+  '@AppBundle/Resources/public/src/**/module.js'
+  '@AppBundle/Resources/public/src/**/**/*.js'
+  %}
+  <script src="{{ asset_url }}"></script>
+  {% endjavascripts %}
+
+</head>
+
+<body>
+<nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+              aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Туризм</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Жилье<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Гостиницы</a></li>
+            <li><a href="#">Квартиры</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Трансфер</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Услуги/развлечения<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Прокаты</a></li>
+            <li><a href="#">Экскурсии</a></li>
+            <li><a href="#">Гиды</a></li>
+            <li><a href="#">Кафе</a></li>
+            <li><a href="#">Иснтрукторы</a></li>
+            <li><a href="#">Квадроциклы</a></li>
+            <li><a href="#">Бильярд</a></li>
+            <li><a href="#">Сауна</a></li>
+            <li><a href="#">Хамам</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">Общая информация<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Подъемники</a></li>
+            <li><a href="#">Канатные дороги</a></li>
+            <li><a href="#">Абонементы</a></li>
+            <li><a href="#">Веб-камеры</a></li>
+            <li><a href="#">Погода</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+<div id="content" class="container">
+  {% block body %}
+  {% endblock %}
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">Домбай 2016.</p>
+  </div>
+</footer>
+</body>
+</html>

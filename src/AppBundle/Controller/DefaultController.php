@@ -4,15 +4,28 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
+
+use AppBundle\Manager\ElectricianManager;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class DefaultController extends Controller
 {
+    private $electricianManager;
+    
+    public function __construct(ElectricianManager $electricianManager) {
+        $this->electricianManager = $electricianManager;
+    }
+    
     /**
      * @Route("", name="main")
      */
     public function indexAction() {
-        return $this->render('AppBundle:default:index.html.twig');
+        $this->electricianManager->init();
+        $data = [
+            'board' => $this->get('session')->get('board'),
+            'stepCount' => 1
+        ];
+        return $this->render('AppBundle:default:index.html.twig', $data);
     }
     
 }

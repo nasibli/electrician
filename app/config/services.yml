@@ -33,6 +33,22 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    
+    AppBundle\Manager\ElectricianManager:
+        public: true
+        arguments: 
+            $sessionService: "@session"
+    
     AppBundle\Dao\ResultDAO:
         arguments: 
             $entityManager: "@=service('doctrine').getManager()"
+    
+    AppBundle\Validator\ElectricianValidator:
+        public: true
+        arguments: 
+            $validator: "@validator"
+            
+    AppBundle\Validator\ResultValidator:
+        public: true
+        arguments: 
+            $validator: "@validator"

@@ -14,3 +14,18 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+    
+doctrine:
+    dbal:
+        driver: pdo_pgsql
+        host: '%test_database_host%'
+        port: '%test_database_port%'
+        dbname: '%test_database_name%'
+        user: '%test_database_user%'
+        password: '%test_database_password%'
+        charset: UTF8
+
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true

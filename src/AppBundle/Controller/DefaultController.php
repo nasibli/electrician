@@ -22,8 +22,7 @@ class DefaultController extends Controller
     public function indexAction() {
         $this->electricianManager->init();
         $data = [
-            'board' => $this->get('session')->get('board'),
-            'stepCount' => 1
+            'board' => $this->electricianManager->getBoard()
         ];
         return $this->render('AppBundle:default:index.html.twig', $data);
     }

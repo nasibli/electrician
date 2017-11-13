@@ -23,8 +23,8 @@ class ElectricianManager {
     }
     
     public function init() {
-        $board = $this->createBoard();
-        $this->sessionService->set('board', $board);
+        $this->board = $this->createBoard();
+        $this->sessionService->set('board', $this->board);
         $this->sessionService->set('stepCount', 0);
     }
     
@@ -47,6 +47,10 @@ class ElectricianManager {
     
     public function getStepCount() {
         return $this->sessionService->get('stepCount');
+    }
+
+    public function getBoard() {
+        return $this->board;
     }
 
     private function getNearCells (int $rowIndex, int $colIndex) {
@@ -135,7 +139,7 @@ class ElectricianManager {
         $this->sessionService->set('board', $this->board);
     }
     
-    private function isRandom () {
+    public function isRandom () {
         return random_int(self::RANDOM_MIN, self::RANDOM_MAX) === self::PATTERN_NUMBER;
     }
            

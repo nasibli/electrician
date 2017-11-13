@@ -1,31 +1,21 @@
 <?php
 
 namespace CommonBundle\Validator;
-use Symfony\Component\Validator\Validator\RecursiveValidator as SymfonyValidator;
+
+use Symfony\Component\Validator\Validator\RecursiveValidator;
 
 class AbstractValidator {
-  /**
-   * @var SymfonyValidator
-   */
-  protected $validator;
 
-  public function __construct(SymfonyValidator $validator) {
-    $this->validator = $validator;
-  }
+    protected $errors = [];  
 
-  /**
-   * @param array $errors
-   *
-   * @return array
-   */
-  protected function getErrors($errors) {
-    $res = [];
-    if (count($errors) > 0) {
-      foreach ($errors as $error) {
-        $res[$error->getPropertyPath()] = $error->getMessage();
-      }
+    protected $validator;
+
+    public function __construct(RecursiveValidator $validator) {
+        $this->validator = $validator;
     }
-    return $res;
-  }
-
+  
+    public function getErrors() {
+        return $this->errors;
+    }
+  
 }

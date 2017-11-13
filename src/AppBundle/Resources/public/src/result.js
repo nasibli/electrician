@@ -35,7 +35,7 @@ function Result (api, addWindowId, bestWindowId, bestTableId,  stepId) {
         let userName = document.getElementById('input_user').value;
         result.api.add(userName).done(function(resp) {
             if (resp.success) {
-                $('#'+result.windowId).modal('hide');
+                $('#'+result.addWindowId).modal('hide');
                 result.onUserAdded();
             }
         })

@@ -11,21 +11,22 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 use AppBundle\Manager\ResultManager;
 use AppBundle\Manager\ElectricianManager;
+use AppBundle\Validator\ResultValidator;
 
 class ResultController extends Controller {
     
     private $resultManager;
-    private $sessionService;
     private $electricianManager;
+    private $resultValidator;
     
     public function __construct(
             ElectricianManager $electricianManager,
             ResultManager $resultManager, 
-            Session $sessionService
+            ResultValidator $resultValidator
     ) {
         $this->electricianManager = $electricianManager;
         $this->resultManager      = $resultManager;
-        $this->sessionService     = $sessionService;
+        $this->resultValidator    = $resultValidator;
     }
     
     /**
@@ -47,7 +48,15 @@ class ResultController extends Controller {
      */
     public function postAction(Request $request) {
         $userName = $request->get('userName');
-        $stepCount = $this->sessionService->get('stepCount');
+        $stepCount = $this->electricianManager->getStepCount();
+        
+        if (!$this->resultValidator->validate($userName, $stepCount)) {
+            return new JsonResponse([
+                'success' => false,
+                'errors'  => $this->resultValidator->getErrors()
+            ]);
+        }
+        
         $this->resultManager->add($userName, $stepCount);
         $this->electricianManager->init();
         return new JsonResponse(['success' => true]);

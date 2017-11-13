@@ -2,17 +2,19 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Tests\AppBundle\AbstractTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends AbstractTestCase
 {
-    public function testIndex()
+    public function testIndexAction()
     {
-        $client = static::createClient();
+        $crawler = $this->client->request('GET', '/');
 
-        $crawler = $client->request('GET', '/');
-
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
-        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+        
+        $this->assertContains('Электрик', $crawler->filter('h1')->text());
+        $this->assertContains('Лучшие результаты', $crawler->filter('#btn_best')->text());
+        $this->assertTrue( !empty($crawler->filter('#result_window')->text()) );
+        $this->assertTrue( !empty($crawler->filter('#best_window')->text()) );
     }
 }
